@@ -10,10 +10,10 @@ CORS(app)
 # Define a route for the root URL "/"
 @app.route('/api/get_location_names')
 def get_location_names():
-    response = jsonify({
-        'locations' : util.get_location_names()
-    })
-    response.headers.add('Access-Control-Allow-Origin','*')
+    locations = util.get_location_names()
+    print("DEBUG: Locations from util.py:", locations)  # Debug log
+    response = jsonify({'locations': locations})
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @app.route('/api/predict_home_price', methods=['POST'])
