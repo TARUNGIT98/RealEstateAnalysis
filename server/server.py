@@ -12,9 +12,12 @@ CORS(app)
 def get_location_names():
     locations = util.get_location_names()
     print("DEBUG: Locations from util.py:", locations)  # Debug log
+    if locations is None:
+        return jsonify({"error": "Locations not loaded"}), 500
     response = jsonify({'locations': locations})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
 
 @app.route('/api/predict_home_price', methods=['POST'])
 def predict_home_price():
