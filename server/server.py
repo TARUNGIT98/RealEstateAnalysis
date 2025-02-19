@@ -33,6 +33,17 @@ def predict_home_price():
     response.headers.add('Access-Control-Allow-Origin','*')
     return response
 
+@app.route('/api/debug_files')
+def debug_files():
+    artifacts_path = "./artifacts/"
+    try:
+        files = os.listdir(artifacts_path)
+    except Exception as e:
+        files = f"Error accessing artifacts: {str(e)}"
+
+    return jsonify({"files_in_artifacts": files})
+
+
 import os
 
 if __name__ == "__main__":
