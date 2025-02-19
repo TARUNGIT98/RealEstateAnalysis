@@ -21,19 +21,21 @@ def debug_files():
     return jsonify({"files_in_artifacts": files})
 
 
-# Debugging: Check the content of columns.json
 @app.route('/api/debug_columns')
 def debug_columns():
-    try:
-        columns_path = "./artifacts/columns.json"
-        if not os.path.exists(columns_path):
-            return jsonify({"error": "columns.json not found"})
+    columns_path = os.path.join(os.path.dirname(__file__), "artifacts", "columns.json")
 
+    # Check if file exists
+    if not os.path.exists(columns_path):
+        return jsonify({"error": f"File not found at {columns_path}"}), 404
+
+    # Read JSON file
+    try:
         with open(columns_path, 'r') as f:
             data = json.load(f)
         return jsonify({"columns_json": data})
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify({"error": str(e)}), 500
 
 
 # API Endpoint: Get all location names
