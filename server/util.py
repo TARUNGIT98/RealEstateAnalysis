@@ -36,22 +36,31 @@ def get_location_names():
 
 import os
 
+import os
+
+ARTIFACTS_PATH = os.path.join(os.path.dirname(__file__), "artifacts")
+
+
 def load_saved_artifacts():
     global __data_columns, __locations, __model
     print("Loading saved artifacts...")
 
-    with open("./artifacts/columns.json", 'r') as f:
-        __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns[3:] if len(__data_columns) > 3 else []
+    try:
+        with open(os.path.join(ARTIFACTS_PATH, "columns.json"), 'r') as f:
+            __data_columns = json.load(f)['data_columns']
+            __locations = __data_columns[3:] if len(__data_columns) > 3 else []
 
-    print("DEBUG: Loaded locations:", __locations)  # Debugging log
+        print("DEBUG: Loaded locations:", __locations)  # Debug log
+    except Exception as e:
+        print("ERROR: Failed to load columns.json:", e)
 
-    with open("./artifacts/banglore_home_prices_model.pickle", 'rb') as f:
-        __model = pickle.load(f)
+    try:
+        with open(os.path.join(ARTIFACTS_PATH, "banglore_home_prices_model.pickle"), 'rb') as f:
+            __model = pickle.load(f)
+    except Exception as e:
+        print("ERROR: Failed to load model:", e)
 
     print("Loading done!")
-
-
 
 
 if __name__ == '__main__':
