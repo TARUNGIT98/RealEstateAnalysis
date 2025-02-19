@@ -34,28 +34,24 @@ def get_location_names():
 # This function is useful for providing dropdown options in a frontend UI.
 
 
+import os
+
+ARTIFACTS_PATH = os.path.join(os.path.dirname(__file__), "artifacts")
+
 def load_saved_artifacts():
-    print("loading saved artifacts... ")
-    global __data_columns
-    global __locations
-    global __model
+    global __data_columns, __locations, __model
 
-# Loads necessary model artifactsbefore making predictions.
-# Uses global to modify   __data_columns and __locations.
+    with open(os.path.join(ARTIFACTS_PATH, "columns.json"), 'r') as f:
+        __data_columns = json.load(f)['data_columns']
+        __locations = __data_columns[3:]
 
-    with open("./artifacts/columns.json",'r') as f:
-       __data_columns = json.load(f)['data_columns']
-       __locations = __data_columns[3:]
-
-    # Opens and reads the JSON file(columns.json). data_columns.json contains all feature column names.
-    # Why __locations = __data_columns[3:]? The first 3 columns(e.g., sqft, bath, bhk) are numerical
-    # features. Everything after the first 3 are one - hot encoded location names.
-
-    with open("./artifacts/banglore_home_prices_model.pickle",'rb') as f :
+    with open(os.path.join(ARTIFACTS_PATH, "banglore_home_prices_model.pickle"), 'rb') as f:
         __model = pickle.load(f)
+
+    print("DEBUG: Loaded locations:", __locations)
+ # Debugging line
     print("loading saved artifacts...done")
 
-    # rb is read binary mode
 
 
 if __name__ == '__main__':
