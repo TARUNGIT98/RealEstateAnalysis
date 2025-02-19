@@ -12,7 +12,7 @@ const HomePriceEstimator = () => {
   const API_BASE_URL = "https://realestateanalysis.onrender.com/api"; // Backend Render URL
 
   useEffect(() => {
-    fetch('`${API_BASE_URL}/get_location_names`')
+    fetch(`${API_BASE_URL}/get_location_names`)
       .then(response => response.json())
       .then(data => {
         if (data.locations) {
@@ -28,7 +28,7 @@ const HomePriceEstimator = () => {
       return;
     }
 
-    const response = await fetch('`${API_BASE_URL}/predict_home_price`', {
+    const response = await fetch(`${API_BASE_URL}/predict_home_price`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
