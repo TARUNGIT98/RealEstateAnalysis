@@ -12,9 +12,9 @@
     "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://TARUNGIT98/RealEstateAnalysis",
+  "homepage": "https://TARUNGIT98.githu.io/RealEstateAnalysis",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "NODE_OPTIONS=--openssl-legacy-provider npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
