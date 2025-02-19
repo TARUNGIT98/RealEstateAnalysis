@@ -22,10 +22,17 @@ def get_estimated_price(location, sqft, bath, bhk):
     return round(__model.predict([x])[0], 2)
 
 def get_location_names():
+    global __locations
+
+    print("DEBUG: Getting locations...")
+    print(f"DEBUG: __locations variable = {__locations}")
+
     if __locations is None:
-        print("ERROR: Locations not loaded.")
-        return []  # Return an empty list instead of None to prevent frontend crashes
+        print("ERROR: Locations not loaded!")
+        return None
+
     return __locations
+
 
 def load_saved_artifacts():
     global __data_columns, __locations, __model

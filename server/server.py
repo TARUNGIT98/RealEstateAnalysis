@@ -80,7 +80,12 @@ def predict_home_price():
 # Start the Flask app
 if __name__ == "__main__":
     print("Starting Python Flask Server for Home Price Prediction")
+
+    print("DEBUG: Loading artifacts before server starts...")
     util.load_saved_artifacts()
+
+    print("DEBUG: Loaded locations at startup:", util.get_location_names())
 
     port = int(os.environ.get("PORT", 10000))  # Render assigns a PORT dynamically
     app.run(host='0.0.0.0', port=port)
+
