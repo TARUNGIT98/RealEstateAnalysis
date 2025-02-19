@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/RealEstateAnalysis/static/css/main.de54cc74.chunk.css",
+    "main.js": "/RealEstateAnalysis/static/js/main.ef468ab8.chunk.js",
+    "main.js.map": "/RealEstateAnalysis/static/js/main.ef468ab8.chunk.js.map",
+    "runtime-main.js": "/RealEstateAnalysis/static/js/runtime-main.4436114f.js",
+    "runtime-main.js.map": "/RealEstateAnalysis/static/js/runtime-main.4436114f.js.map",
+    "static/js/2.6d789d82.chunk.js": "/RealEstateAnalysis/static/js/2.6d789d82.chunk.js",
+    "static/js/2.6d789d82.chunk.js.map": "/RealEstateAnalysis/static/js/2.6d789d82.chunk.js.map",
+    "static/js/3.81704da5.chunk.js": "/RealEstateAnalysis/static/js/3.81704da5.chunk.js",
+    "static/js/3.81704da5.chunk.js.map": "/RealEstateAnalysis/static/js/3.81704da5.chunk.js.map",
+    "index.html": "/RealEstateAnalysis/index.html",
+    "precache-manifest.77160689fbefe6c59ca63fa99c44b0dc.js": "/RealEstateAnalysis/precache-manifest.77160689fbefe6c59ca63fa99c44b0dc.js",
+    "service-worker.js": "/RealEstateAnalysis/service-worker.js",
+    "static/css/main.de54cc74.chunk.css.map": "/RealEstateAnalysis/static/css/main.de54cc74.chunk.css.map",
+    "static/js/2.6d789d82.chunk.js.LICENSE.txt": "/RealEstateAnalysis/static/js/2.6d789d82.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4436114f.js",
+    "static/js/2.6d789d82.chunk.js",
+    "static/css/main.de54cc74.chunk.css",
+    "static/js/main.ef468ab8.chunk.js"
+  ]
+}
