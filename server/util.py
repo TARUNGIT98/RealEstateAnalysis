@@ -37,37 +37,42 @@ def get_location_names():
 def load_saved_artifacts():
     global __data_columns, __locations, __model
 
-    print("DEBUG: Loading saved artifacts...")
+    artifacts_dir = os.path.dirname(__file__)  # Get the current directory
+    columns_path = os.path.join(artifacts_dir, "artifacts", "columns.json")
 
-    # Ensure correct path resolution
-    base_path = os.path.dirname(os.path.abspath(__file__))
-    artifacts_path = os.path.join(base_path, "artifacts")
+    print(f"DEBUG: Looking for columns.json at {columns_path}")
 
-    columns_path = os.path.join(artifacts_path, "columns.json")
-    model_path = os.path.join(artifacts_path, "banglore_home_prices_model.pickle")
-
-    # Check if columns.json exists
     if not os.path.exists(columns_path):
-        print(f"ERROR: columns.json not found at {columns_path}")
+        print(f"ERROR: columns.json NOT FOUND at {columns_path}")
         return
 
-    # Load columns.json
-    with open(columns_path, 'r') as f:
-        __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns[3:]  # Locations start from index 3
-    print(f"DEBUG: Loaded locations: {len(__locations)} locations found.")
+    # Load the columns.json file
+    try:
+        with open(columns_path, 'r') as f:
+            data = json.load(f)
+            __data_columns = data['data_columns']
+            __locations = __data_columns[3:]  # Skip sqft, bath, bhk
+    except Exception as e:
+        print(f"ERROR: Failed to read columns.json -> {e}")
+        return
 
-    # Check if model exists
+    print(f"DEBUG: Loaded locations: {__locations}")
+
+    # Load the model
+    model_path = os.path.join(artifacts_dir, "artifacts", "banglore_home_prices_model.pickle")
+
     if not os.path.exists(model_path):
-        print(f"ERROR: Model file not found at {model_path}")
+        print(f"ERROR: Model file NOT FOUND at {model_path}")
         return
 
-    # Load model
-    with open(model_path, 'rb') as f:
-        __model = pickle.load(f)
+    try:
+        with open(model_path, 'rb') as f:
+            __model = pickle.load(f)
+    except Exception as e:
+        print(f"ERROR: Failed to load model -> {e}")
+        return
 
-    print("DEBUG: Loading saved artifacts... Done.")
-
+    print("DEBUG: Successfully loaded model and artifacts")
 if __name__ == '__main__':
     load_saved_artifacts()
     print(get_location_names())  # Should print list of locations or an error message
